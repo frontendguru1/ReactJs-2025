@@ -33,7 +33,7 @@ Error Boundaries: Introduced to catch JavaScript errors in component trees.
 2018:
 React Hooks Announcement: Hooks were introduced in React v16.8 to manage state and lifecycle features in functional components.
 
-Dec - 2024 - V19
+Dec - 2024 - V.19
 
 Popularity:
 Adoption by major companies like Facebook, Instagram, Airbnb, Netflix, and Uber.
