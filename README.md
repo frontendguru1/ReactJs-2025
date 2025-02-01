@@ -80,3 +80,9 @@ npm run dev
 11. API Integration with AXIOS
 12. Context API
 13.
+
+14. Conditional rendering | ternary operator
+15. nested function/methods
+16. Map function -
+17. useSate() hook
+18. useEffect() - hook

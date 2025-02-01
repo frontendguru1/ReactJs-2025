@@ -44,16 +44,18 @@
   color: #888;
 }
 
-.header {
-  font-size: 36px;
-  color: black;
-}
-
 .userStatus {
   display: inline-block;
   padding: 3px 10px;
-  background: red;
   border-radius: 6px;
   color: white;
   font-size: 12px;
+}
+
+.userStatus.online {
+  background: green;
+}
+
+.userStatus.offline {
+  background: red;
 }
