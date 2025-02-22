@@ -86,3 +86,11 @@ npm run dev
 16. Map function -
 17. useSate() hook
 18. useEffect() - hook
+
+// useState() hook
+// useEffect() hook
+// Components creation
+// How to pass the data from child to parent
+// Map function
+// Form handling
+// Nested child component

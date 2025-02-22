@@ -1,0 +1,73 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.todo-wrapper {
+  display: flex;
+  gap: 20px;
+}
+
+.addNewTask-container {
+  width: 450px;
+  background: #ccc;
+  padding: 20px;
+}
+
+.field-container {
+  padding: 8px 0;
+}
+
+.field-container label {
+  font-size: 14px;
+  display: block;
+  text-align: left;
+}
+
+.field-container input,
+.field-container textarea,
+.field-container select {
+  width: 100%;
+  padding: 3px;
+  font-size: 13px;
+}
+
+.field-container textarea {
+  min-height: 80px;
+}
+
+.add-btn {
+  padding-top: 20px;
+}
+
+.add-btn button {
+  width: 120px;
+  height: 38px;
+  background: darkgray;
+}
+
+
+.task-item {
+  background: #F5F5F5;
+  border: 1px solid #ECECEC;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.taskList-wrapper {
+  flex: 1;
+  text-align: left;
+}
+
+.dates-wrapper {
+  padding-top: 20px;
+  display: flex;
+  max-width: 40%;
+  justify-content: space-between;
+}
