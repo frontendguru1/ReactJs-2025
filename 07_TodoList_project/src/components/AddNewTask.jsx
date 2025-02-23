@@ -11,12 +11,69 @@ const formModel = {
 };
 const AddNewTask = ({ addTaskData }) => {
   const [formData, setFormData] = useState(formModel);
+  const [errors, setErrors] = useState({});
+
+  // const errors = {
+  //   title: "Please enter a title",
+  //   description: 'Please enter a description'
+  // }
+
+  const errorHandler = () => {
+    if (!formData?.title) {
+      setErrors({
+        title: "Please enter a title",
+      });
+      return;
+    } else if (!formData?.description) {
+      setErrors({
+        description: "Please enter a description",
+      });
+      return;
+    } else if (!formData?.priority) {
+      setErrors({
+        priority: "Please set a priority",
+      });
+      return;
+    } else if (!formData?.startDate) {
+      setErrors({
+        startDate: "Please select a start date",
+      });
+      return;
+    } else if (!formData?.endDate) {
+      setErrors({
+        endDate: "Please select a end date",
+      });
+      return;
+    } else if (!formData?.assignee) {
+      setErrors({
+        assignee: "Please select a assignee",
+      });
+      return;
+    } else {
+      setErrors({});
+    }
+  };
+
+  // const onBlurHandler = () => {
+  //   errorHandler();
+  // };
 
   const submitHandler = (e) => {
     e.preventDefault();
-    addTaskData({ ...formData, id: Date.now() });
-    setFormData(formModel);
-    // console.log("submit", formData);
+    errorHandler();
+    console.log("errors", errors);
+
+    if (
+      formData?.title &&
+      formData?.description &&
+      formData?.priority &&
+      formData?.startDate &&
+      formData?.endDate &&
+      formData?.assignee
+    ) {
+      addTaskData({ ...formData, id: Date.now() });
+      setFormData(formModel);
+    }
   };
 
   const fieldChangeHandler = (e) => {
@@ -38,7 +95,9 @@ const AddNewTask = ({ addTaskData }) => {
             id="title"
             value={formData.title}
             onChange={fieldChangeHandler}
+            onBlur={errorHandler}
           />
+          <div className="error">{errors?.title && errors?.title}</div>
         </div>
 
         <div className="field-container">
@@ -48,7 +107,11 @@ const AddNewTask = ({ addTaskData }) => {
             id="description"
             onChange={fieldChangeHandler}
             value={formData.description}
+            onBlur={errorHandler}
           ></textarea>
+          <div className="error">
+            {errors?.description && errors?.description}
+          </div>
         </div>
 
         <div className="field-container">
@@ -64,6 +127,7 @@ const AddNewTask = ({ addTaskData }) => {
             <option value={"medium"}>Medium</option>
             <option value={"low"}>Low</option>
           </select>
+          <div className="error">{errors?.priority && errors?.priority}</div>
         </div>
 
         <div className="field-container">
@@ -75,6 +139,7 @@ const AddNewTask = ({ addTaskData }) => {
             value={formData.startDate}
             onChange={fieldChangeHandler}
           />
+          <div className="error">{errors?.startDate && errors?.startDate}</div>
         </div>
 
         <div className="field-container">
@@ -86,6 +151,7 @@ const AddNewTask = ({ addTaskData }) => {
             value={formData.endDate}
             onChange={fieldChangeHandler}
           />
+          <div className="error">{errors?.endDate && errors?.endDate}</div>
         </div>
 
         <div className="field-container">
@@ -101,6 +167,7 @@ const AddNewTask = ({ addTaskData }) => {
             <option value={"john"}>John</option>
             <option value={"michael"}>Michael</option>
           </select>
+          <div className="error">{errors?.assignee && errors?.assignee}</div>
         </div>
 
         <div className="add-btn">

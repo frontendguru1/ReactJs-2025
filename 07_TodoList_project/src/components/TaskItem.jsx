@@ -1,14 +1,13 @@
 const TaskItem = ({ task }) => {
   return (
     <div className="task-item">
-      <h4>{task?.title}</h4>
-      <p>{task?.description}</p>
-      <div>
-        <strong>Priority:</strong>
-        <br />
-        {task?.priority}
+      {/* Title */}
+      <div className="title-wrapper">
+        <h4>{task?.title}</h4>
+        <p>{task?.description}</p>
       </div>
 
+      {/* dates */}
       <div className="dates-wrapper">
         <div>
           <strong>Start Date:</strong>
@@ -23,7 +22,17 @@ const TaskItem = ({ task }) => {
         </div>
       </div>
 
-      <div>
+      {/* Priority */}
+
+      <div className="task-priority">
+        <strong>Priority:</strong>
+        <br />
+        {task?.priority}
+      </div>
+
+      {/* Assignee */}
+
+      <div className="task-assignee">
         <strong>Assignee:</strong>
         <br />
         {task?.assignee}
