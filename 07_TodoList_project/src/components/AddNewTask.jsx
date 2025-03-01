@@ -54,10 +54,6 @@ const AddNewTask = ({ addTaskData }) => {
     }
   };
 
-  // const onBlurHandler = () => {
-  //   errorHandler();
-  // };
-
   const submitHandler = (e) => {
     e.preventDefault();
     errorHandler();
@@ -95,7 +91,6 @@ const AddNewTask = ({ addTaskData }) => {
             id="title"
             value={formData.title}
             onChange={fieldChangeHandler}
-            onBlur={errorHandler}
           />
           <div className="error">{errors?.title && errors?.title}</div>
         </div>
@@ -107,7 +102,6 @@ const AddNewTask = ({ addTaskData }) => {
             id="description"
             onChange={fieldChangeHandler}
             value={formData.description}
-            onBlur={errorHandler}
           ></textarea>
           <div className="error">
             {errors?.description && errors?.description}

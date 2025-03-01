@@ -194,3 +194,24 @@ body {
   font-size: 14px;
   color: red;
 }
+
+.field-container {
+  width: 100%;
+}
+
+.addNewTask-container {
+  padding: 20px;
+}
+
+.field-container input,
+.field-container select,
+.field-container textarea {
+  width: 100%;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.field-container label {
+  display: block;
+  font-size: 14px;
+}
