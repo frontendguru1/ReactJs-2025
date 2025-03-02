@@ -6,6 +6,8 @@ import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import { Filter, NotebookPen } from "lucide-react";
 import { UserContextProvider } from "./context/userContext";
+import LoginForm from "./components/Loginform";
+import { AuthContextProvider } from "./context/AuthContext";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -38,35 +40,38 @@ function App() {
 
   return (
     <UserContextProvider>
-      <div className="app-container">
-        {/* sidebar */}
-        <Sidebar />
+      <AuthContextProvider>
+        <div className="app-container">
+          {/* sidebar */}
+          <Sidebar />
 
-        {/* Content */}
+          {/* Content */}
 
-        <div className="content-wrapper">
-          <Header />
+          <div className="content-wrapper">
+            <Header />
 
-          <div className="controls-wrapper">
-            <div className="filter">
-              <button>
-                <Filter /> Filter{" "}
-              </button>
+            <div className="controls-wrapper">
+              <div className="filter">
+                <button>
+                  <Filter /> Filter{" "}
+                </button>
+              </div>
+              <div className="add-new-task">
+                <button>
+                  <NotebookPen /> Add a New Task
+                </button>
+              </div>
             </div>
-            <div className="add-new-task">
-              <button>
-                <NotebookPen /> Add a New Task
-              </button>
+
+            <div className="todo-wrapper">
+              <LoginForm />
+              <AddNewTask addTaskData={addTask} />
+
+              <TaskList taskList={tasks} />
             </div>
-          </div>
-
-          <div className="todo-wrapper">
-            <AddNewTask addTaskData={addTask} />
-
-            <TaskList taskList={tasks} />
           </div>
         </div>
-      </div>
+      </AuthContextProvider>
     </UserContextProvider>
   );
 }

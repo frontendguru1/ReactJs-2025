@@ -1,9 +1,12 @@
-import { CircleUserRound } from "lucide-react";
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
+import UserDropdown from "./UserDropdown";
+import { AuthContext } from "../context/AuthContext";
 
 const Header = () => {
   const { userName } = useContext(UserContext);
+  const { isAuthenticated } = useContext(AuthContext);
+  const isAuth = JSON.parse(isAuthenticated);
   // console.log("userName", userName);
 
   return (
@@ -11,10 +14,14 @@ const Header = () => {
       <div className="search">
         <input type="text" placeholder="Search..." />
       </div>
-      <div className="user-dropdown">
-        {userName}
-        <CircleUserRound size={32} />
-      </div>
+
+      {isAuth ? (
+        <UserDropdown userName={"Alex"} />
+      ) : (
+        <div>
+          <span>Login </span>
+        </div>
+      )}
     </div>
   );
 };
