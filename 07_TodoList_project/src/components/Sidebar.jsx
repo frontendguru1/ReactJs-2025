@@ -1,12 +1,22 @@
 import { Logs, ListChecks, NotebookPen } from "lucide-react";
-import { UserContext } from "../context/userContext";
+import Logo from "../assets/logo.svg";
 import { useContext } from "react";
+import { AuthContextNew } from "../context/AuthContext_v2";
+
 const Sidebar = () => {
-  const { userName } = useContext(UserContext);
+  // const { user, data } = useContext(AuthContextNew);
   return (
     <div className="sidebar">
-      Username is: {userName}
-      <div className="logo">Todo List - Manager</div>
+      <div className="logo">
+        <img src={Logo} alt="Taskly" />
+      </div>
+
+      {/* <div className="text-white">
+        Username is:{user.name} and age: {user.age}
+        {data.map((item) => (
+          <div key={item}>{item}</div>
+        ))}
+      </div> */}
       <div className="menus">
         <ul>
           <li>

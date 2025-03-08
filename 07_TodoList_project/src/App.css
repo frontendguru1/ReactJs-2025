@@ -23,25 +23,34 @@ body {
 
 .app-container .sidebar {
   width: 350px;
-  background: #fff;
+  background: #222534;
   padding: 20px;
-  border-right: 1px solid #ececec;
+  border-right: 1px solid #fff;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.4);
 }
 
 .app-container .content-wrapper {
   flex: 1;
-  padding-left: 30px;
+  /* padding-left: 30px; */
 }
 
 .app-container .sidebar .logo {
   font-size: 18px;
   font-weight: bold;
   color: #000;
+  border-bottom: 1px solid #323232;
+  min-height: 80px;
+  max-height: 80px;
+}
+
+.app-container .sidebar .logo img {
+  max-width: 65%;
+  height: auto;
+  margin: auto;
 }
 
 .app-container .sidebar .menus {
   padding-top: 30px;
-  border-top: 1px solid #ececec;
   margin-top: 30px;
 }
 
@@ -53,7 +62,7 @@ body {
 .app-container .sidebar .menus ul li {
   list-style: none;
   font-size: 16px;
-  color: #000;
+  color: #fff;
   padding: 10px 0;
   display: flex;
   align-items: center;
@@ -66,6 +75,10 @@ body {
   padding: 20px;
   gap: 20px;
   align-items: center;
+  min-height: 100px;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 200;
 }
 
 .header .search {
@@ -76,14 +89,37 @@ body {
   width: 100%;
   height: 38px;
   padding: 3px 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  font-size: 17px;
+  border: 0;
+}
+
+.header .search input:focus {
+  border: 0;
+  outline: 0;
+}
+
+.header .logout-dropdown {
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 160px;
+  position: absolute;
+  top: 80px;
+  right: 20px;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.header .logout-dropdown div {
+  cursor: pointer;
 }
 
 .header .user-dropdown {
-  width: 60px;
   color: #666;
+  font-size: 15px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  cursor: pointer;
 }
 
 .controls-wrapper {
@@ -119,6 +155,7 @@ body {
   border-radius: 8px;
   font-size: 16px;
   color: #fff;
+  cursor: pointer;
 }
 
 .taskList-wrapper {
@@ -199,21 +236,29 @@ body {
   width: 100%;
 }
 
-.addNewTask-container {
+.addNewTask-wrapper {
   padding: 20px;
+  position: absolute;
+  background: #fff;
+  width: 30%;
+  height: calc(100vh - 102px);
+  top: 101px;
+  right: 0;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 .field-container input,
 .field-container select,
 .field-container textarea {
   width: 100%;
-  padding: 5px;
+  padding: 10px;
   font-size: 14px;
 }
 
 .field-container label {
   display: block;
-  font-size: 14px;
+  font-size: 16px;
+  padding-bottom: 5px;
 }
 
 .login-wrapper {
@@ -221,6 +266,10 @@ body {
   background: #fff;
   box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
   padding: 20px;
+  position: absolute;
+  right: 15px;
+  top: 79px;
+  border-radius: 12px;
 }
 
 .login-wrapper .field-wrapper {
@@ -232,10 +281,14 @@ body {
   width: 100%;
   display: block;
   font-size: 14px;
+  padding-bottom: 6px;
 }
 
 .login-wrapper .field-wrapper input {
   width: 100%;
   padding: 5px;
   font-size: 14px;
+  border: 1px solid #eee;
+  padding: 6px;
+  border-radius: 8px;
 }

@@ -1,3 +1,4 @@
+import { CircleX } from "lucide-react";
 import { useState } from "react";
 
 const formModel = {
@@ -9,8 +10,9 @@ const formModel = {
   assignee: "",
   id: Date.now(),
 };
-const AddNewTask = ({ addTaskData }) => {
+const AddNewTask = ({ addTaskData, handleClose }) => {
   const [formData, setFormData] = useState(formModel);
+
   const [errors, setErrors] = useState({});
 
   // const errors = {
@@ -81,7 +83,13 @@ const AddNewTask = ({ addTaskData }) => {
 
   return (
     <div className="addNewTask-container">
-      <h2>Add a new task</h2>
+      <div
+        className="absolute right-5 top-5 cursor-pointer"
+        onClick={handleClose}
+      >
+        <CircleX size={20} className="text-amber-600" />
+      </div>
+      <h2 className="text-2xl font-bold text-center py-3">Add a new task</h2>
       <form onSubmit={submitHandler}>
         <div className="field-container">
           <label htmlFor="title">Title</label>
@@ -91,30 +99,33 @@ const AddNewTask = ({ addTaskData }) => {
             id="title"
             value={formData.title}
             onChange={fieldChangeHandler}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           />
           <div className="error">{errors?.title && errors?.title}</div>
         </div>
 
-        <div className="field-container">
+        <div className="field-container pt-3">
           <label htmlFor="description">Description</label>
           <textarea
             name="description"
             id="description"
             onChange={fieldChangeHandler}
             value={formData.description}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 min-h-32"
           ></textarea>
           <div className="error">
             {errors?.description && errors?.description}
           </div>
         </div>
 
-        <div className="field-container">
+        <div className="field-container pt-3">
           <label htmlFor="priority">Priority</label>
           <select
             name="priority"
             id="priority"
             onChange={fieldChangeHandler}
             value={formData.priority}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           >
             <option value="">Please Select</option>
             <option value={"high"}>High</option>
@@ -124,7 +135,7 @@ const AddNewTask = ({ addTaskData }) => {
           <div className="error">{errors?.priority && errors?.priority}</div>
         </div>
 
-        <div className="field-container">
+        <div className="field-container pt-3">
           <label htmlFor="startDate">Start Date</label>
           <input
             type="date"
@@ -132,11 +143,12 @@ const AddNewTask = ({ addTaskData }) => {
             id="startDate"
             value={formData.startDate}
             onChange={fieldChangeHandler}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           />
           <div className="error">{errors?.startDate && errors?.startDate}</div>
         </div>
 
-        <div className="field-container">
+        <div className="field-container pt-3">
           <label htmlFor="endDate">End Date</label>
           <input
             type="date"
@@ -144,17 +156,19 @@ const AddNewTask = ({ addTaskData }) => {
             id="endDate"
             value={formData.endDate}
             onChange={fieldChangeHandler}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           />
           <div className="error">{errors?.endDate && errors?.endDate}</div>
         </div>
 
-        <div className="field-container">
+        <div className="field-container pt-3">
           <label htmlFor="assignee">Assignee</label>
           <select
             name="assignee"
             id="assignee"
             onChange={fieldChangeHandler}
             value={formData.assignee}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           >
             <option value="">Please Select</option>
             <option value={"alex"}>Alex</option>
@@ -164,8 +178,13 @@ const AddNewTask = ({ addTaskData }) => {
           <div className="error">{errors?.assignee && errors?.assignee}</div>
         </div>
 
-        <div className="add-btn">
-          <button type="submit">Add</button>
+        <div className="add-btn pt-5">
+          <button
+            type="submit"
+            className="px-4 py-2 bg-sky-800 text-white font-semibold rounded-sm hover:bg-sky-700 cursor-pointer"
+          >
+            Add a new task
+          </button>
         </div>
       </form>
     </div>

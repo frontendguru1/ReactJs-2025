@@ -32,6 +32,7 @@ const LoginForm = () => {
             id="userName"
             value={loginData.userName}
             onChange={handleChange}
+            className="w-full px-4 py-2 border border-gray-300 rounded-sm shadow-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
 
@@ -43,11 +44,17 @@ const LoginForm = () => {
             id="password"
             value={loginData.password}
             onChange={handleChange}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
 
         <div className="field-wrapper">
-          <button type="submit">Login</button>
+          <button
+            type="submit"
+            className="px-4 py-2 bg-sky-800 text-white font-semibold rounded-sm hover:bg-sky-700 cursor-pointer"
+          >
+            Login
+          </button>
         </div>
       </form>
     </div>
