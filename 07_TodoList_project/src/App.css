@@ -177,6 +177,12 @@ body {
   margin: 12px 0;
 }
 
+.taskList-wrapper .task-item.completed-task {
+  border: 1px solid green;
+  background: #e2e2e2;
+}
+
+
 .taskList-wrapper .task-item .title-wrapper {
   flex: 1;
 }
@@ -291,4 +297,13 @@ body {
   border: 1px solid #eee;
   padding: 6px;
   border-radius: 8px;
+}
+
+.task-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.task-controls button {
+  cursor: pointer;
 }

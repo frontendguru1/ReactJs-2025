@@ -9,6 +9,7 @@ const formModel = {
   endDate: "",
   assignee: "",
   id: Date.now(),
+  isCompleted: false,
 };
 const AddNewTask = ({ addTaskData, handleClose }) => {
   const [formData, setFormData] = useState(formModel);

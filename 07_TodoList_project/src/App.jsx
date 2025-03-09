@@ -12,51 +12,45 @@ import { AuthContextNewProvider } from "./context/AuthContext_v2";
 import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  // const [tasks, setTasks] = useState([]);
   const [isAddFormVisible, setFormVisible] = useState(false);
 
-  const [data, setData] = useLocalStorage("user", { name: "Michael" });
-
-  const updateUser = () => {
-    const newDetails = {
-      name: "Alex",
-      age: 32,
-      address: "abc address",
-    };
-
-    setData(newDetails);
-    console.log("data", data);
-  };
-
-  // const newTask = [];
-  // newTask.push(2)
+  const [tasks, setTasks] = useLocalStorage("taskList", []);
 
   const addTask = (newData) => {
     setTasks((prev) => [...prev, newData]);
   };
 
+  // handle close
   const handleFormClose = () => {
     setFormVisible(false);
   };
 
+  // edit task
+  const editTask = (id) => {
+    const item = tasks.find((task) => task.id == id);
+    setFormVisible(true);
+  };
+
+  // remove task
+  const removeTask = (id) => {
+    const filteredTask = tasks.filter((task) => task.id !== id);
+    setTasks(filteredTask);
+  };
+
+  // complete task
+  const completeTask = (id) => {
+    const item = tasks.find((task) => task.id == id);
+    const updatedItem = { ...item, isCompleted: true };
+    const updatedTaskList = tasks.map((item) =>
+      item.id === updatedItem.id ? updatedItem : item
+    );
+
+    setTasks(updatedTaskList);
+  };
+
   useEffect(() => {
-    console.log("tasks", tasks);
     handleFormClose();
-
-    /*const scrollHandler = () => {
-      console.log("page scroll");
-    };
-
-    document.addEventListener("scroll", scrollHandler);
-    const timer = setInterval(() => {
-      console.log("calling timer");
-    }, 1000);
-
-    return () => {
-      console.log("this will be called when navigate to another page");
-      document.removeEventListener("scroll", scrollHandler);
-      clearInterval(timer);
-    };*/
   }, [tasks]);
 
   return (
@@ -87,15 +81,6 @@ function App() {
                 </div>
 
                 <div className="todo-wrapper">
-                  <div>User Details: {data.name}</div>
-
-                  <button
-                    onClick={updateUser}
-                    className="px-4 py-2 bg-sky-800 text-white font-semibold rounded-sm hover:bg-sky-700 cursor-pointer"
-                  >
-                    Update User
-                  </button>
-
                   {isAddFormVisible && (
                     <div className="addNewTask-wrapper">
                       <AddNewTask
@@ -105,7 +90,12 @@ function App() {
                     </div>
                   )}
 
-                  <TaskList taskList={tasks} />
+                  <TaskList
+                    taskList={tasks}
+                    editTask={editTask}
+                    removeTask={removeTask}
+                    completeTask={completeTask}
+                  />
                 </div>
               </div>
             </div>

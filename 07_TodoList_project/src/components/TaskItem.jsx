@@ -1,6 +1,16 @@
-const TaskItem = ({ task }) => {
+import { CircleCheckBig, FilePenLine, Trash2 } from "lucide-react";
+
+const TaskItem = ({
+  task,
+  taskEditHandler,
+  taskDeleteHandler,
+  taskCompleteHandler,
+}) => {
+  const updatedItemClass = task?.isCompleted
+    ? "task-item completed-task"
+    : "task-item";
   return (
-    <div className="task-item">
+    <div className={updatedItemClass}>
       {/* Title */}
       <div className="title-wrapper">
         <h4>{task?.title}</h4>
@@ -36,6 +46,18 @@ const TaskItem = ({ task }) => {
         <strong>Assignee:</strong>
         <br />
         {task?.assignee}
+      </div>
+
+      <div className="task-controls">
+        <button onClick={taskEditHandler}>
+          <FilePenLine />
+        </button>
+        <button onClick={taskDeleteHandler}>
+          <Trash2 />
+        </button>
+        <button onClick={taskCompleteHandler}>
+          <CircleCheckBig />
+        </button>
       </div>
     </div>
   );
