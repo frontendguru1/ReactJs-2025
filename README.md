@@ -43,54 +43,17 @@ React's Core Concepts:
 1. Component-Based Architecture: Encourages reusability and modularity by breaking UIs into smaller, reusable components.
 2. Virtual DOM: Introduced a lightweight copy of the DOM to efficiently update only the parts of the UI that change, improving performance.
 
-#Learning:
+// E-commerceProject - NY Store
 
-1. Project Set up
-   a. Custom -
-
-b. Using Bundler - Webpack
-
-c. Using Bundler - Vite **\***
-
-d. Using Bundler - Parcel
-
-e. CRA - cerate react app
-
-Using Bundler - Vite
-npm install vite
-npm create vite@latest
-
-npm i
-
-npm run dev
-
--- DONE
--- File System / Structure
-
-2. Virtual DOM
-
-3. Modularity/Components
-4. useState() : hook : Controlled uncontrolled Components
-5. useEffect()
-6. Callbacks
-7. how to bind clickHandler
-8. Forms
-9. Routing
-10. API Integration
-11. API Integration with AXIOS
-12. Context API
-13.
-
-14. Conditional rendering | ternary operator
-15. nested function/methods
-16. Map function -
-17. useSate() hook
-18. useEffect() - hook
-
-// useState() hook
-// useEffect() hook
-// Components creation
-// How to pass the data from child to parent
-// Map function
-// Form handling
-// Nested child component
+1. Components
+2. UseState() hook
+3. UseEffect hook
+4. UseCallback hook
+5. UseMemoize hook
+6. Routing
+7. Redux Toolkit
+8. Axios - Fetch data from an API
+9. UI - Tailwind
+10. Portals
+11. Utils
+12. Higher Order Components
