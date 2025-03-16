@@ -1,11 +1,11 @@
 import { PageContainer } from "../components";
 
-const ProductList = () => {
+const Contact = () => {
   return (
     <PageContainer style="py-10">
-      <h1>Product List</h1>
+      <h1>Contact Us page...</h1>
     </PageContainer>
   );
 };
 
-export default ProductList;
+export default Contact;

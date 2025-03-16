@@ -6,31 +6,42 @@ import {
   SignUp,
   Login,
   Layout,
+  About,
+  Contact,
 } from "../pages";
+import { MENU_PATH } from "../config/Menus";
 export const AppRoutes = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
       {
-        path: "/",
+        path: MENU_PATH.HOME,
         element: <Home />,
         index: true,
       },
       {
-        path: "/login",
+        path: MENU_PATH.ABOUT,
+        element: <About />,
+      },
+      {
+        path: MENU_PATH.CONTACT,
+        element: <Contact />,
+      },
+      {
+        path: MENU_PATH.LOGIN,
         element: <Login />,
       },
       {
-        path: "/signup",
+        path: MENU_PATH.SIGN_UP,
         element: <SignUp />,
       },
       {
-        path: "/products",
+        path: MENU_PATH.PRODUCT_LIST,
         element: <ProductList />,
       },
       {
-        path: "/product-details",
+        path: MENU_PATH.PRODUCT_DETAILS,
         element: <ProductDetails />,
       },
     ],
