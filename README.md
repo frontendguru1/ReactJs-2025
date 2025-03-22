@@ -57,3 +57,9 @@ React's Core Concepts:
 10. Portals
 11. Utils
 12. Higher Order Components
+
+####### Form Handling
+
+1. Custom Form Handling
+2. Formik and Yup (Validation)
+3. React Hook Forms - ZOD (Validation)

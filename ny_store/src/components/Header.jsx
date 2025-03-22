@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router";
 import { TOP_MENUS } from "../config/Menus";
 import FullWidthContainer from "./FullWidthContainer";
 import PageContainer from "./PageContainer";
+import { ICONS } from "../config/Icons";
 
 const Header = () => {
   return (
@@ -14,7 +15,7 @@ const Header = () => {
           <ul className="flex gap-4">
             {TOP_MENUS.map((menu) => (
               <NavLink key={menu.title} to={menu.path}>
-                {menu.title}
+                {menu.title} {ICONS.HOME}
               </NavLink>
             ))}
           </ul>
