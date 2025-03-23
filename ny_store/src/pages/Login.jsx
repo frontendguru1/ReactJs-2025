@@ -1,7 +1,10 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { initialLoginFormValues } from "../config/constants";
+import { useNavigate } from "react-router";
 import * as Yup from "yup";
+import { MENU_PATH } from "../config/Menus";
 const Login = () => {
+  const navigate = useNavigate();
   const loginFormSchema = Yup.object().shape({
     username: Yup.string().required("Username is required!"),
     password: Yup.string()
@@ -18,10 +21,11 @@ const Login = () => {
           initialValues={initialLoginFormValues}
           validationSchema={loginFormSchema}
           onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 2000);
+            // set localstorage
+            window.localStorage.setItem("isAuthenticated", true);
+            // Redirect to home page
+            navigate(MENU_PATH.HOME);
+            setSubmitting(false);
           }}
         >
           {({ errors, touched, isSubmitting }) => (

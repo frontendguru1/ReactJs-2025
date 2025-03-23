@@ -8,8 +8,10 @@ import {
   Layout,
   About,
   Contact,
+  ShoppingCart,
 } from "../pages";
 import { MENU_PATH } from "../config/Menus";
+import { ProtectedRoute } from "../components";
 export const AppRoutes = createBrowserRouter([
   {
     path: "/",
@@ -43,6 +45,14 @@ export const AppRoutes = createBrowserRouter([
       {
         path: MENU_PATH.PRODUCT_DETAILS,
         element: <ProductDetails />,
+      },
+      {
+        path: MENU_PATH.SHOPPING_CART,
+        element: (
+          <ProtectedRoute>
+            <ShoppingCart />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

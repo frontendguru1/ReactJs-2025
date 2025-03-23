@@ -4,6 +4,7 @@ export const MENU_PATH = {
   CONTACT: '/contact-us',
   PRODUCT_LIST: '/product-list',
   PRODUCT_DETAILS: '/product-details:id',
+  SHOPPING_CART: '/shopping-cart',
   LOGIN: '/login',
   SIGN_UP: '/sign-up',
 }

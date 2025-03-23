@@ -6,5 +6,6 @@ import ProductDetails from "./productDetails";
 import Layout from "./Layout.jsx";
 import About from "./About";
 import Contact from "./Contact"
+import ShoppingCart from "./ShoppingCart"
 
-export { Login, SignUp, Home, ProductList, ProductDetails, Layout, About, Contact }
+export { Login, SignUp, Home, ProductList, ProductDetails, Layout, About, Contact, ShoppingCart }

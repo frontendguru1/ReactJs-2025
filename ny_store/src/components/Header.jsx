@@ -1,8 +1,9 @@
 import { Link, NavLink } from "react-router";
-import { TOP_MENUS } from "../config/Menus";
+import { MENU_PATH, TOP_MENUS } from "../config/Menus";
 import FullWidthContainer from "./FullWidthContainer";
 import PageContainer from "./PageContainer";
 import { ICONS } from "../config/Icons";
+import { CircleUserRound, ShoppingCart } from "lucide-react";
 
 const Header = () => {
   return (
@@ -18,6 +19,20 @@ const Header = () => {
                 {menu.title} {ICONS.HOME}
               </NavLink>
             ))}
+          </ul>
+        </div>
+        <div className="">
+          <ul>
+            <li>
+              <NavLink to={MENU_PATH.SHOPPING_CART}>
+                <ShoppingCart />
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={MENU_PATH.LOGIN}>
+                <CircleUserRound />
+              </NavLink>
+            </li>
           </ul>
         </div>
       </PageContainer>
