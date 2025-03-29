@@ -12,28 +12,30 @@ const Header = () => {
         <div className="text-4xl text-black">
           <Link to="/">NY Store</Link>
         </div>
-        <div>
-          <ul className="flex gap-4">
-            {TOP_MENUS.map((menu) => (
-              <NavLink key={menu.title} to={menu.path}>
-                {menu.title} {ICONS.HOME}
-              </NavLink>
-            ))}
-          </ul>
-        </div>
-        <div className="">
-          <ul>
-            <li>
-              <NavLink to={MENU_PATH.SHOPPING_CART}>
-                <ShoppingCart />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to={MENU_PATH.LOGIN}>
-                <CircleUserRound />
-              </NavLink>
-            </li>
-          </ul>
+        <div className="flex gap-7">
+          <div>
+            <ul className="flex gap-7">
+              {TOP_MENUS.map((menu) => (
+                <NavLink key={menu.title} to={menu.path}>
+                  {menu.title} {ICONS.HOME}
+                </NavLink>
+              ))}
+            </ul>
+          </div>
+          <div className="">
+            <ul className="flex gap-4">
+              <li>
+                <NavLink to={MENU_PATH.SHOPPING_CART}>
+                  <ShoppingCart />
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={MENU_PATH.LOGIN}>
+                  <CircleUserRound />
+                </NavLink>
+              </li>
+            </ul>
+          </div>
         </div>
       </PageContainer>
     </FullWidthContainer>
