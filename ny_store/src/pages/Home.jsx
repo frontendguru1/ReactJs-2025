@@ -1,8 +1,8 @@
-import { useEffect } from "react";
 import {
   Banner,
   CategoryCard,
   FullWidthContainer,
+  Loader,
   NewArrivals,
   PageContainer,
 } from "../components";
@@ -22,17 +22,18 @@ const Home = () => {
 
       {/* Categories you might like */}
       <PageContainer style={"py-10"}>
-        <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center text-uppercase">
+        <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center text-uppercase">
           Categories You Might Like
         </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 pt-6">
-          {loader && <p className="text-center">Loading...</p>}
+        <div className="flex gap-6 pt-6 min-h-32">
+          {loader && <Loader />}
 
           {error && <p className="text-center">{error}</p>}
 
           {categoriesData &&
             categoriesData.map((category) => {
-              return <CategoryCard data={category} />;
+              console.log("category", category);
+              return <CategoryCard key={category.id} data={category} />;
             })}
         </div>
 

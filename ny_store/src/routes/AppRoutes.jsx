@@ -43,6 +43,10 @@ export const AppRoutes = createBrowserRouter([
         element: <ProductList />,
       },
       {
+        path: MENU_PATH.PRODUCT_LIST_BY_CATEGORY,
+        element: <ProductList />,
+      },
+      {
         path: MENU_PATH.PRODUCT_DETAILS,
         element: <ProductDetails />,
       },

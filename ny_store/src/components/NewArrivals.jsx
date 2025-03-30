@@ -8,7 +8,7 @@ const NewArrivals = () => {
 
   return (
     <div className="mx-auto pt-14">
-      <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center text-uppercase">
+      <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center text-uppercase">
         New Arrivals
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
