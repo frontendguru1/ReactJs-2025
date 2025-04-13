@@ -1,38 +1,25 @@
-import { useParams } from "react-router";
 import { Loader, PageContainer, ProductCard, Filters } from "../components";
-import useFetch from "../hooks/useFetch";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProduct } from "../features/productSlice";
 // import { useEffect } from "react";
 
 const ProductList = () => {
-  const { id } = useParams();
-  const { data: products, loader } = useFetch(
-    `https://api.escuelajs.co/api/v1/categories/${id}/products`
-  );
+  const dispatch = useDispatch();
+  const { error, loading, product } = useSelector((state) => state.product);
 
-  const [productList, setProductList] = useState(products || []);
+  // useDispatch ==> to trigger an action from the component
+  // const clickHandler = () => {
+  //   dispatch(clearError());
+  // };
 
-  console.log("products", products);
-
-  const getFilters = (searchFilters) => {
-    console.log("searchValue", searchFilters);
-
-    // const API = `https://api.escuelajs.co/api/v1/products/?title=${searchFilters.getFilters}&price_min=${searchFilters.priceMin}&price_max=${searchFilters.priceMax}&categoryId=${searchFilters.category}`
-
-    const result = products.filter((product) =>
-      product.title.includes(searchFilters)
-    );
-
-    setProductList(result);
-
-    console.log("updated products", result);
-  };
+  // useSelector ==> to get the state of the slice
 
   useEffect(() => {
-    setProductList(products);
-  }, [products]);
+    dispatch(getAllProduct());
+  }, [dispatch]);
 
-  if (loader) {
+  if (loading) {
     return (
       <PageContainer style="py-32">
         <Loader />
@@ -45,10 +32,11 @@ const ProductList = () => {
       <h1 className="text-3xl font-semibold text-gray-800 mb-6 text-center text-uppercase">
         Product List{" "}
       </h1>
-      <Filters search={getFilters} />
+
+      {/* <Filters search={getFilters} /> */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 bg">
-        {productList &&
-          productList.map((product) => {
+        {product &&
+          product.map((product) => {
             return <ProductCard key={product.id} product={product} />;
           })}
       </div>
@@ -57,11 +45,3 @@ const ProductList = () => {
 };
 
 export default ProductList;
-
-// {
-//   search: "caps",
-//   size: "small",
-//   color: "red",
-//   priceRange: "10-30",
-//   sortBy: "newest",
-// }

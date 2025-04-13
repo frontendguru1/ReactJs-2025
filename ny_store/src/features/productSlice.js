@@ -1,9 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { productService } from "../services/productService";
 
 
-const productAsyncThunk = createAsyncThunk('productThunk', () => {
-
-})
+export const getAllProduct = createAsyncThunk('product/list', async (_, { rejectWithValue }) => {
+  try {
+    const response = await productService();
+    return response.data;
+  } catch (error) {
+    console.log('error', error);
+    return rejectWithValue('Failed to fetch the product list');
+  }
+});
 
 const initialState = {
   product: [],
@@ -17,23 +24,23 @@ const productSlice = createSlice({
   reducers: {
     clearError: (state) => {
       state.error = null;
+      console.log("clear error action trigered");
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(productAsyncThunk.pending, (state) => {
+      .addCase(getAllProduct.pending, (state) => {
         state.loading = true;
         state.error = null;
-
       })
 
-      .addCase(productAsyncThunk.fulfilled, (state, action) => {
+      .addCase(getAllProduct.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
         state.product = action.payload;
       })
 
-      .addCase(productAsyncThunk.rejected, (state, action) => {
+      .addCase(getAllProduct.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload.error;
       })

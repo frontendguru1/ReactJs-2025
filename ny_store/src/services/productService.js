@@ -1,9 +1,9 @@
+import { api } from "./apiConfig"
 
-// API Call
-// return response
+export const productService = () => api.get("/products");
 
-export const productService = () => {
-  // API
-}
-
-
+// GET ==> to fetch the data from server
+// POST ==> to post the data to the server 
+// PUT ==> Update the data (replace the entire data)
+// PATCH ==> update the data (Partially)
+// DELETE ==> Delete data
