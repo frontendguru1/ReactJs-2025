@@ -7,16 +7,18 @@ import {
 } from "../components";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProduct } from "../features/productSlice";
+import { getAllProductsByCategory } from "../features/productSlice";
+import { useParams } from "react-router";
 // import { useEffect } from "react";
 
-const ProductList = () => {
+const ProductListByCategory = () => {
   const dispatch = useDispatch();
   const { error, loading, product } = useSelector((state) => state.product);
+  const { id } = useParams();
 
   useEffect(() => {
-    dispatch(getAllProduct());
-  }, [dispatch]);
+    dispatch(getAllProductsByCategory(id));
+  }, [dispatch, id]);
 
   if (loading) {
     return (
@@ -32,10 +34,10 @@ const ProductList = () => {
         Product List{" "}
       </h1>
 
-      <Filters />
+      {/* <Filters search={getFilters} /> */}
       <RenderProducts products={product} />
     </PageContainer>
   );
 };
 
-export default ProductList;
+export default ProductListByCategory;

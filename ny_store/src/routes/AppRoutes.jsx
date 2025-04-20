@@ -9,6 +9,7 @@ import {
   About,
   Contact,
   ShoppingCart,
+  ProductListByCategory,
 } from "../pages";
 import { MENU_PATH } from "../config/Menus";
 import { ProtectedRoute } from "../components";
@@ -44,7 +45,7 @@ export const AppRoutes = createBrowserRouter([
       },
       {
         path: MENU_PATH.PRODUCT_LIST_BY_CATEGORY,
-        element: <ProductList />,
+        element: <ProductListByCategory />,
       },
       {
         path: MENU_PATH.PRODUCT_DETAILS,

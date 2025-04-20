@@ -9,5 +9,6 @@ import CategoryCard from "./CategoryCard"
 import Loader from "./Loader"
 import ProductCard from "./ProductCard"
 import Filters from "./Filters"
+import ProductList from "./ProductList"
 
-export { Header, Footer, PageContainer, FullWidthContainer, Banner, ProtectedRoute, NewArrivals, CategoryCard, Loader, ProductCard, Filters }
+export { Header, Footer, PageContainer, FullWidthContainer, Banner, ProtectedRoute, NewArrivals, CategoryCard, Loader, ProductCard, Filters, ProductList }
