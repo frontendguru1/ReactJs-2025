@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   Banner,
   CategoryCard,
@@ -6,15 +7,28 @@ import {
   NewArrivals,
   PageContainer,
 } from "../components";
-import useFetch from "../hooks/useFetch";
+// import useFetch from "../hooks/useFetch";
+import { getAllCategories } from "../features/productSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Home = () => {
+  const dispatch = useDispatch();
   const {
-    data: categories,
-    loader,
+    loading,
     error,
-  } = useFetch("https://api.escuelajs.co/api/v1/categories/");
-  const categoriesData = categories.slice(0, 4);
+    categories: categoriesData,
+  } = useSelector((store) => store.product);
+  // const {
+  //   data: categories,
+  //   loader,
+  //   error,
+  // } = useFetch("https://api.escuelajs.co/api/v1/categories/");
+
+  // const categoriesData = categories.slice(0, 4);
+
+  useEffect(() => {
+    dispatch(getAllCategories());
+  }, [dispatch]);
 
   return (
     <FullWidthContainer>
@@ -26,7 +40,7 @@ const Home = () => {
           Categories You Might Like
         </h2>
         <div className="flex gap-6 pt-6 min-h-32">
-          {loader && <Loader />}
+          {loading && <Loader />}
 
           {error && <p className="text-center">{error}</p>}
 

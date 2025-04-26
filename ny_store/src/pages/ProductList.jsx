@@ -7,7 +7,7 @@ import {
 } from "../components";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProduct } from "../features/productSlice";
+import { getAllCategories, getAllProduct } from "../features/productSlice";
 // import { useEffect } from "react";
 
 const ProductList = () => {
@@ -16,6 +16,7 @@ const ProductList = () => {
 
   useEffect(() => {
     dispatch(getAllProduct());
+    dispatch(getAllCategories());
   }, [dispatch]);
 
   if (loading) {
@@ -26,13 +27,18 @@ const ProductList = () => {
     );
   }
 
+  const filters = (filterData) => {
+    // console.log("filterData from parent", filterData);
+    dispatch(getAllProduct(filterData));
+  };
+
   return (
     <PageContainer style="py-10">
       <h1 className="text-3xl font-semibold text-gray-800 mb-6 text-center text-uppercase">
         Product List{" "}
       </h1>
 
-      <Filters />
+      <Filters filtersData={filters} />
       <RenderProducts products={product} />
     </PageContainer>
   );

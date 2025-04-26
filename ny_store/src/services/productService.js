@@ -1,6 +1,9 @@
 import { api } from "./apiConfig"
 
-export const getAllProducts = () => api.get("/products");
+export const getAllProducts = (params) => api.get("/products", { params: params });
+
+export const getAllCategoriesData = () => api.get("/categories");
+
 
 export const getAllProductByCategory = (id) => api.get(`/categories/${id}/products`);
 
