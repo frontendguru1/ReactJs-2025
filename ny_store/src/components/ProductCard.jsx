@@ -14,7 +14,7 @@ const ProductCard = ({ product }) => {
       </h3>
       <p className="text-gray-500">${product.price}</p>
       <button className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white font-semibold opacity-0 group-hover:opacity-50 transition duration-300">
-        <span className="w-[100] h-9 bg-black inline-block">Add to Cart</span>
+        <span className="w-[100] h-9 bg-black inline-block">View Details</span>
       </button>
     </div>
   );

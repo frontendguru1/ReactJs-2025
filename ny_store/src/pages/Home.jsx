@@ -13,18 +13,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const {
-    loading,
-    error,
-    categories: categoriesData,
-  } = useSelector((store) => store.product);
-  // const {
-  //   data: categories,
-  //   loader,
-  //   error,
-  // } = useFetch("https://api.escuelajs.co/api/v1/categories/");
+  const { loading, error, categories } = useSelector((store) => store.product);
 
-  // const categoriesData = categories.slice(0, 4);
+  const categoriesData = categories.slice(0, 4);
 
   useEffect(() => {
     dispatch(getAllCategories());

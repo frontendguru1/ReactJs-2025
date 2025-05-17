@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import ProductCard from "./ProductCard";
 
 const ProductList = ({ products }) => {
@@ -5,7 +6,11 @@ const ProductList = ({ products }) => {
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6 bg">
       {products &&
         products.map((product) => {
-          return <ProductCard key={product.id} product={product} />;
+          return (
+            <Link to={`/product-details/${product.id}`} key={product.id}>
+              <ProductCard product={product} />
+            </Link>
+          );
         })}
     </div>
   );
