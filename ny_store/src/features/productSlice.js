@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { getAllCategoriesData, getAllProductByCategory, getAllProducts } from "../services/productService";
+import { getAllCategoriesData, getAllProductByCategory, getAllProducts, getProductDataById } from "../services/productService";
 
 
 // Get All Products
@@ -12,6 +12,17 @@ export const getAllProduct = createAsyncThunk('product/list', async (params = {}
   } catch (error) {
     console.log('error', error);
     return rejectWithValue('Failed to fetch the product list');
+  }
+});
+
+// Get Product by ID
+export const getProductById = createAsyncThunk('product/byId', async (id, { rejectWithValue }) => {
+  try {
+    const response = await getProductDataById(id); // service
+    return response.data;
+  } catch (error) {
+    console.log('error', error);
+    return rejectWithValue('Failed to fetch the product by ID');
   }
 });
 
@@ -43,6 +54,7 @@ export const getAllCategories = createAsyncThunk('categories', async (_, { rejec
 // Initial state
 const initialState = {
   product: [],
+  productDetailData: {},
   categories: [],
   loading: false,
   error: null,
@@ -60,6 +72,8 @@ const productSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+
+      //getAllProduct
       .addCase(getAllProduct.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -76,7 +90,25 @@ const productSlice = createSlice({
         state.error = action.payload.error;
       })
 
+      // getProductById
+      .addCase(getProductById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
 
+      .addCase(getProductById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.productDetailData = action.payload;
+      })
+
+      .addCase(getProductById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload.error;
+      })
+
+
+      //getAllProductsByCategory
       .addCase(getAllProductsByCategory.pending, (state) => {
         state.loading = true;
         state.error = null;

@@ -2,6 +2,11 @@ import { api } from "./apiConfig"
 
 export const getAllProducts = (params) => api.get("/products", { params: params });
 
+export const getProductDataById = async (id) => {
+  const data = await api.get(`/products/${id}`);
+  return data;
+};
+
 export const getAllCategoriesData = () => api.get("/categories");
 
 
