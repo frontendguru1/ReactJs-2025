@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router";
 import {
   Loader,
   PageContainer,
+  ProductCountController,
   ProductList as RenderProducts,
 } from "../components";
 import { useEffect, useState } from "react";
@@ -14,8 +15,9 @@ import { getProductById } from "../features/productSlice";
 const ProductDetails = () => {
   const { id } = useParams();
   const [productDetail, setProductDetail] = useState({});
+  const [quantity, setQuantity] = useState(1);
+
   // const [similarProducts, setSimilarProducts] = useState([]);
-  const [count, setCount] = useState(1);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -30,25 +32,10 @@ const ProductDetails = () => {
   const productDetailsData = () => {
     if (product.length > 0) {
       const details = product.find((item) => item.id == id);
+      console.log("details", details);
       setProductDetail(details);
     } else {
       dispatch(getProductById(id));
-    }
-  };
-
-  const handleProductCount = (action) => {
-    if (action == "inc") {
-      setCount((prev) => ++prev);
-    }
-
-    if (action == "dec") {
-      setCount((prev) => {
-        if (prev > 1) {
-          return prev - 1;
-        }
-
-        return prev;
-      });
     }
   };
 
@@ -57,8 +44,12 @@ const ProductDetails = () => {
   };
 
   const handleAddToCart = () => {
-    // console.log("clicked add to cart button...", productDetail);
-    dispatch(addToCart({ ...productDetail, quantity: count }));
+    dispatch(addToCart({ ...productDetail, quantity: quantity }));
+  };
+
+  const getCount = (count) => {
+    console.log("count", count);
+    setQuantity(count);
   };
 
   useEffect(() => {
@@ -95,28 +86,7 @@ const ProductDetails = () => {
               Price - ${productDetail?.price}
             </div>
 
-            <div className="flex gap-2 mt-8">
-              <button
-                className="cursor-pointer"
-                onClick={() => handleProductCount("dec")}
-              >
-                <Minus />
-              </button>
-              <input
-                type="text"
-                name=""
-                id=""
-                value={count}
-                className="w-[30px] text-center"
-                onChange={(e) => setCount(e.target.value)}
-              />
-              <button
-                className="cursor-pointer"
-                onClick={() => handleProductCount("inc")}
-              >
-                <Plus />
-              </button>
-            </div>
+            <ProductCountController getQuantity={getCount} />
 
             <div className="flex gap-8 pt-12">
               <button

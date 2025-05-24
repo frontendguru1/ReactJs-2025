@@ -14,8 +14,36 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, data) => {
       const { payload } = data;
-      state.cartItems.push(payload);
-      state.cartItemCount = state.cartItems.length;
+      console.log('payload', payload);
+      console.log('state.cartItems', state.cartItems);
+      const isItemExist = state.cartItems.some(item => item.id === payload.id);
+      if (isItemExist) {
+        const updatedCartItems = state.cartItems.map(item => {
+          if (item.id === payload.id) {
+            return {
+              ...item,
+              quantity: item.quantity + payload.quantity
+            }
+          }
+          return item;
+        });
+        state.cartItems = updatedCartItems;
+      }
+      else {
+        const updatedCartItems = [...state.cartItems, payload];
+        state.cartItems = updatedCartItems
+        console.log('updatedCartItems', updatedCartItems);
+      }
+
+
+      // state.cartItems.push(payload);
+
+      let itemTotalCount = 0;
+      state.cartItems.forEach(item => {
+        itemTotalCount += item.quantity
+      });
+
+      state.cartItemCount = itemTotalCount;
     }
   }
 });

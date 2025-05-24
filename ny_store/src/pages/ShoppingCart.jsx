@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { PageContainer } from "../components";
+import { PageContainer, ProductCountController } from "../components";
 
 const ShoppingCart = () => {
   const { cartItems } = useSelector((state) => state.cart);
@@ -26,6 +26,8 @@ const ShoppingCart = () => {
     0
   );
 
+  const getCount = () => {};
+
   return (
     <PageContainer style="py-10">
       <div className="max-w-6xl mx-auto p-4">
@@ -46,7 +48,8 @@ const ShoppingCart = () => {
                 />
                 <div className="ml-4 flex-1">
                   <h2 className="text-lg font-semibold">{item.title}</h2>
-                  <p className="text-gray-500">Qty: {item.quantity}</p>
+                  {/* <p className="text-gray-500">Qty: {item.quantity}</p> */}
+                  <ProductCountController getQuantity={getCount} />
                 </div>
                 <div className="text-right">
                   <p className="text-lg font-medium">

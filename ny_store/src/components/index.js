@@ -10,5 +10,6 @@ import Loader from "./Loader"
 import ProductCard from "./ProductCard"
 import Filters from "./Filters"
 import ProductList from "./ProductList"
+import ProductCountController from "./ProductCountController";
 
-export { Header, Footer, PageContainer, FullWidthContainer, Banner, ProtectedRoute, NewArrivals, CategoryCard, Loader, ProductCard, Filters, ProductList }
+export { Header, Footer, PageContainer, FullWidthContainer, Banner, ProtectedRoute, NewArrivals, CategoryCard, Loader, ProductCard, Filters, ProductList, ProductCountController }
