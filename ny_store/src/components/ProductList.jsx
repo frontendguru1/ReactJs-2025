@@ -5,6 +5,7 @@ const ProductList = ({ products }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6 bg">
       {products &&
+        products.length > 0 &&
         products.map((product) => {
           return (
             <Link to={`/product-details/${product.id}`} key={product.id}>

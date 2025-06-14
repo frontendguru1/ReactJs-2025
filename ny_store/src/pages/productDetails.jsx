@@ -10,30 +10,39 @@ import { useDispatch, useSelector } from "react-redux";
 import { Minus, Plus } from "lucide-react";
 import { MENU_PATH } from "../config/Menus";
 import { addToCart } from "../features/cartSlice";
-import { getProductById } from "../features/productSlice";
+import {
+  getAllProductsByCategory,
+  getProductById,
+} from "../features/productSlice";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const [productDetail, setProductDetail] = useState({});
   const [quantity, setQuantity] = useState(1);
+  const [similarProductsData, setSimilarProductsData] = useState([]);
 
   // const [similarProducts, setSimilarProducts] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { error, loading, product, productDetailData } = useSelector(
-    (state) => state.product
-  );
+  const { error, loading, product, productDetailData, productListByCategory } =
+    useSelector((state) => state.product);
 
-  const similarProducts = product
-    .filter((item) => item.category.name == productDetail?.category?.name)
-    .slice(0, 4);
+  const similarProducts = () => {
+    const list = product.length ? product : productListByCategory;
+    const filteredList = list
+      .filter((item) => item.category.name == productDetail?.category?.name)
+      .slice(0, 4);
+    setSimilarProductsData(filteredList);
+  };
 
   const productDetailsData = () => {
     if (product.length > 0) {
       const details = product.find((item) => item.id == id);
       console.log("details", details);
-      setProductDetail(details);
+      setProductDetail((prev) => {
+        return { ...prev, ...details };
+      });
     } else {
       dispatch(getProductById(id));
     }
@@ -54,15 +63,19 @@ const ProductDetails = () => {
 
   useEffect(() => {
     productDetailsData();
-    // setSimilarProductsData();
+    similarProducts();
   }, [product, id]);
 
   useEffect(() => {
-    setProductDetail(productDetailData);
-
-    // dispatch action for similar products
-    // dispatch(getSimilarProduct({id: 1, price: 122}))
+    if (Object.keys(productDetailData).length > 0) {
+      setProductDetail(productDetailData);
+      dispatch(getAllProductsByCategory(productDetailData?.category?.id));
+    }
   }, [productDetailData]);
+
+  useEffect(() => {
+    similarProducts();
+  }, [productDetail, productListByCategory]);
 
   return (
     <PageContainer style="py-10">
@@ -111,7 +124,7 @@ const ProductDetails = () => {
         <h1 className="text-3xl font-semibold text-gray-800 mb-6 text-left text-uppercase">
           Similar Products
         </h1>
-        <RenderProducts products={similarProducts} />
+        <RenderProducts products={similarProductsData} />
       </div>
     </PageContainer>
   );

@@ -55,6 +55,7 @@ export const getAllCategories = createAsyncThunk('categories', async (_, { rejec
 const initialState = {
   product: [],
   productDetailData: {},
+  productListByCategory: [],
   categories: [],
   loading: false,
   error: null,
@@ -117,7 +118,7 @@ const productSlice = createSlice({
       .addCase(getAllProductsByCategory.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.product = action.payload;
+        state.productListByCategory = action.payload;
       })
 
       .addCase(getAllProductsByCategory.rejected, (state, action) => {
